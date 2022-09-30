@@ -18,10 +18,6 @@ class User
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $userID;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -44,7 +40,7 @@ class User
     private $descr;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $prive;
 

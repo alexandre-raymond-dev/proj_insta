@@ -20,11 +20,6 @@ class Photo
     /**
      * @ORM\Column(type="integer")
      */
-    private $photoID;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $albumID;
 
     /**
@@ -38,7 +33,7 @@ class Photo
     private $descr;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $prive;
 

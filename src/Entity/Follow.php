@@ -20,11 +20,6 @@ class Follow
     /**
      * @ORM\Column(type="integer")
      */
-    private $followID;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $followerID;
 
     /**

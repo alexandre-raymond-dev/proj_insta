@@ -20,11 +20,6 @@ class Comment
     /**
      * @ORM\Column(type="integer")
      */
-    private $commentID;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $photoID;
 
     /**

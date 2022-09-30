@@ -18,11 +18,6 @@ class Album
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $albumID;
-
-    /**
      * @ORM\Column(type="string", length=200)
      */
     private $title;
@@ -33,7 +28,7 @@ class Album
     private $descr;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $prive;
 
