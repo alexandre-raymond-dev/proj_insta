@@ -58,4 +58,7 @@ interface UserInterface
      * Returns the identifier for this user (e.g. its username or email address).
      */
     public function getUserIdentifier(): string;
+    public function getId(): ?int;
+    public function getEmail(): ?string;
+
 }

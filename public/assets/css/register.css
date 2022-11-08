@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+#dragger_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #344150;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+#dragger {
+    width: 350px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px dashed #fbfbfb;
+    border-radius: 5px;
+    background-color: #4DAAA7;
+}
+
+#dragger.active {
+    border: 2px dashed #000000;
+}
+
+#dragger img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#filename {
+    width: 100%;
+}
+
+.fileName {
+    padding: 5px;
+    width: 100%;
+    margin: 10px 0 0 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-trash-can {
+    color: red;
+    cursor: pointer;
+}
+
+.icon {
+    color: #ffffff;
+    font-size: 45px;
+    margin: 10px 0;
+}
+
+h2,
+h3 {
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+button {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #333333;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+}
