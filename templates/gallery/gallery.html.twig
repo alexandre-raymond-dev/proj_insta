@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <link href="vendors/glightbox/glightbox.min.css" rel="stylesheet">
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        {% for photo in photoList %}
+            <!-- <p>{{ photo.getTitle() }}</p>
+            <p>{{ photo.getDescription() }}</p>
+            <p>{{ photo.getUploadDate().format("l, d-M-Y H:i:s T") }}</p> -->
+            <img src="{{photo.getImagePath()}}" alt="" width="300" height="300"/>
+        {% endfor %}
+    </div>
+
+
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+{#    <main class="main" id="top">#}
+{#      #}
+{#      <section class="pt-3 pb-9 position-relative">#}
+{#        <div class="container px-md-5">#}
+{#          <div class="position-md-absolute start-0 ms-2 mt-3 mb-4">#}
+{#            <ul class="nav gallery-tab d-flex gap-3" data-filter-nav="data-filter-nav">#}
+{#              <li class="nav-item"><a class="nav-link p-0 py-md-2 isotope-nav active" href="#!" data-filter="*">All</a></li>#}
+{#              <li class="nav-item"><a class="nav-link p-0 py-md-2 isotope-nav" href="#!" data-filter=".shortfilms">Short films</a></li>#}
+{#              <li class="nav-item"><a class="nav-link p-0 py-md-2 isotope-nav" href="#!" data-filter=".professional">Professional</a></li>#}
+{#              <li class="nav-item"><a class="nav-link p-0 py-md-2 isotope-nav" href="#!" data-filter=".commercial">Commercial</a></li>#}
+{#            </ul>#}
+{#          </div>#}
+{#          <div class="row g-3" data-isotope='{"layoutMode":"packery"}'>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 shortfilms gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/1.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 shortfilms gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/2.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-6 col-12 shortfilms gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/3.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-6 col-12 professional gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/4.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 professional gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/5.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 professional gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/6.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 commercial gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/7.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-3 col-sm-6 col-12 commercial gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/8.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#            <div class="col-lg-6 col-12 commercial gallery-item isotope-item"><img class="img-fluid w-100" src="assets/img/gallery/9.png" alt="" data-glightbox="title: To infinity and beyond; description: Iching biching chiching" /></div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </section>#}
+{#    </main>#}
+    <script src="vendors/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="vendors/isotope-layout/isotope.pkgd.min.js"> </script>
+    <script src="vendors/isotope-packery/packery-mode.pkgd.min.js"> </script>
+    <script src="vendors/glightbox/glightbox.min.js"></script>
+{% endblock %}
