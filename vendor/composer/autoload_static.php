@@ -577,10 +577,10 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
     );
 
     public static $classMap = array (
+        'App\\Controller\\AlbumController' => __DIR__ . '/../..' . '/src/Controller/AlbumController.php',
         'App\\Controller\\MainController' => __DIR__ . '/../..' . '/src/Controller/MainController.php',
         'App\\Controller\\RegistrationController' => __DIR__ . '/../..' . '/src/Controller/RegistrationController.php',
         'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
-        'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
         'App\\Form\\RegistrationFormType' => __DIR__ . '/../..' . '/src/Form/RegistrationFormType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Repository/UserRepository.php',
@@ -3459,6 +3459,7 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeStimulusController' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeStimulusController.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeSubscriber' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeSubscriber.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTest' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeTest.php',
+        'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTwigComponent' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeTwigComponent.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTwigExtension' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeTwigExtension.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeUnitTest' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeUnitTest.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeUser' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeUser.php',
