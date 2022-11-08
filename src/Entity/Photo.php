@@ -1,80 +1,50 @@
 <?php
 
+namespace App\Entity;
+
+use App\Repository\PhotoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Photo
- *
- * @ORM\Table(name="photo", indexes={@ORM\Index(name="IDX_14B78418F132696E", columns={"userid"})})
- * @ORM\Entity
- */
+#[ORM\Entity(repositoryClass: PhotoRepository::class)]
 class Photo
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="photoid", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="photo_photoid_seq", allocationSize=1, initialValue=1)
-     */
-    private $photoid;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="albumid", type="integer", nullable=false)
-     */
-    private $albumid;
+    #[ORM\Column(length: 120)]
+    private ?string $title = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="title", type="string", length=100, nullable=true)
-     */
-    private $title;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="descr", type="string", length=500, nullable=true)
-     */
-    private $descr;
+    #[ORM\Column(length: 20)]
+    private ?string $privacy = null;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="prive", type="integer", nullable=false)
-     */
-    private $prive;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $uploadDate = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="uploadphoto", type="date", nullable=false)
-     */
-    private $uploadphoto;
+    #[ORM\Column]
+    private ?int $view = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="imagepath", type="string", nullable=false, options={"fixed"=true})
-     */
-    private $imagepath;
+    #[ORM\Column(length: 255)]
+    private ?string $imagePath = null;
 
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
-     * })
-     */
-    private $userid;
+    #[ORM\ManyToMany(targetEntity: Album::class, mappedBy: 'photos')]
+    private Collection $albums;
 
-    public function getid(): ?int
+    public function __construct()
     {
-        return $this->photoid;
+        $this->albums = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getTitle(): ?string
@@ -96,43 +66,82 @@ class Photo
 
     public function setDescription(?string $description): self
     {
-        $this->descr = $description;
+        $this->description = $description;
 
         return $this;
     }
 
     public function getPrivacy(): ?string
     {
-        return $this->prive;
+        return $this->privacy;
     }
 
     public function setPrivacy(string $privacy): self
     {
-        $this->prive = $privacy;
+        $this->privacy = $privacy;
 
         return $this;
     }
 
     public function getUploadDate(): ?\DateTimeInterface
     {
-        return $this->uploadphoto;
+        return $this->uploadDate;
     }
 
     public function setUploadDate(\DateTimeInterface $uploadDate): self
     {
-        $this->uploadphoto = $uploadDate;
+        $this->uploadDate = $uploadDate;
+
+        return $this;
+    }
+
+    public function getView(): ?int
+    {
+        return $this->view;
+    }
+
+    public function setView(int $view): self
+    {
+        $this->view = $view;
 
         return $this;
     }
 
     public function getImagePath(): ?string
     {
-        return $this->imageath;
+        return $this->imagePath;
     }
 
     public function setImagePath(string $imagePath): self
     {
-        $this->imagepath = $imagePath;
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Album>
+     */
+    public function getAlbums(): Collection
+    {
+        return $this->albums;
+    }
+
+    public function addAlbum(Album $album): self
+    {
+        if (!$this->albums->contains($album)) {
+            $this->albums->add($album);
+            $album->addPhoto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(Album $album): self
+    {
+        if ($this->albums->removeElement($album)) {
+            $album->removePhoto($this);
+        }
 
         return $this;
     }
