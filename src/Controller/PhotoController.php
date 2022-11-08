@@ -20,19 +20,19 @@ class PhotoController extends AbstractController
     #[Route('/photo', name: 'app_photo')]
     public function index(): Response
     {
-        return $this->render('photo/index.html.twig', [
+        return $this->render('gallery/photo/index.html.twig', [
             'controller_name' => 'PhotoController',
         ]);
     }
 
-    #[Route('/photos', name: 'see_photos')]
+    #[Route('/gallery', name: 'Gallery')]
     public function seeAll(Request $request, ManagerRegistry $doctrine):  Response
     {
         $entityManager = $doctrine->getRepository(Photo::class);
 
         $photoList = $entityManager->findAll();
 
-        return $this->render('photo/index.html.twig', [
+        return $this->render('gallery/gallery.html.twig', [
             'photoList' => $photoList
         ]);
     }
@@ -125,7 +125,7 @@ class PhotoController extends AbstractController
 
 
         return $this->render(
-            'photo/add.html.twig',
+            'gallery/add.html.twig',
             array(
                 'form' => $form->createView(),
                 'controller_name' => 'PhotoController'
@@ -139,7 +139,7 @@ class PhotoController extends AbstractController
         
 
 
-        return $this->render('photo/index.html.twig', [
+        return $this->render('gallery/photo/index.html.twig', [
             'controller_name' => 'PhotoController',
         ]);
     }
