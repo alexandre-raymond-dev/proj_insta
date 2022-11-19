@@ -11,7 +11,7 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
-        return $this->render('fotogency-v1/public/profileUser.html.twig', [
+        return $this->render('profile/profileUser.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }
