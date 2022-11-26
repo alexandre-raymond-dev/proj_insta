@@ -1,21 +1,70 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseLogin.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <section class="section-content padding-y">
 
-    <h1>Register</h1>
+	<!-- ============================ COMPONENT REGISTER   ================================= -->
+	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+		<article class="card-body">
+			<header class="mb-4">
+				<h4 class="card-title">Inscription</h4>
+			</header>
+			
+    		{{ form_start(registrationForm,{'method': 'POST'}) }}
+					
+                    {% for registrationForm in app.flashes('errorEmail') %}
+                        <div class="alert alert-info">
+                            {{ registrationForm }}
+                        </div>
+                    {% endfor %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+					<div class="col form-group">
+						{{ form_row(registrationForm.name,
+							{'label': 'Nom',
+							'attr': {'class': 'form-control'}
+							}) 
+						}}
+					</div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+					<div class="col form-group">
+						{{ form_row(registrationForm.username,
+							{'label': 'Prénom',
+							'attr': {'class': 'form-control'}
+							}) 
+						}}	
+					</div>
+					
+
+					<div class="form-group">
+						{{ form_row(registrationForm.email,
+							{'label': 'Email',
+							'attr': {'class': 'form-control'}
+							}) 
+						}}
+					</div> 
+
+					<div class="form-group">
+						{{ form_row(registrationForm.plainPassword,
+							{'label': 'Mot de passe',
+							'attr': {'class': 'form-control'}
+							}) 
+						}}
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block"> S'inscrire </button>
+					</div>
+
+					<div class="form-group">
+						<label class="custom-control custom-checkbox"> {{ form_row(registrationForm.agreeTerms) }}
+							<div class="custom-control-label">J'accepte <a href="#"> les termes et conditions et la politique de confidentialité </a> </div>
+						</label>
+					</div>
+
+			{{ form_end(registrationForm) }} 
+		</article><!-- card-body.// -->
+	</div>
+
+</section>
 {% endblock %}
