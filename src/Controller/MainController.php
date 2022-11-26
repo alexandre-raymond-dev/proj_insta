@@ -57,4 +57,15 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/homeUserPage", name="HomeUserPage")
+     */
+    public function homeUserPage(): Response
+    {
+        return $this->render('profile/indexUserHomePage.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
 }
