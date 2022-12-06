@@ -9,11 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    {% for photo in photoList %}
-    <!-- <p>{{ photo.getTitle() }}</p>
+    {# {% for photo in photoList %}
+    <p>{{ photo.getTitle() }}</p>
     <p>{{ photo.getDescription() }}</p>
-    <p>{{ photo.getUploadDate().format("l, d-M-Y H:i:s T") }}</p> -->
+    <p>{{ photo.getUploadDate().format("l, d-M-Y H:i:s T") }}</p> 
     <img src="{{photo.getImagePath()}}" alt="" width="300" height="300"/>
-    {% endfor %}
+    {% endfor %}#}
 </div>
 {% endblock %}

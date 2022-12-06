@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller;
 use Doctrine\DBAL\Types\Types;
 use App\Entity\Photo;
 use Doctrine\Persistence\ManagerRegistry;
@@ -13,7 +14,10 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType; 
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\File;
 
 class PhotoController extends AbstractController 
 {
@@ -37,10 +41,9 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/photo/add', name: 'add_photo')]
+    #[Route('/gallery/add', name: 'add_photo')]
     public function add(Request $request, ManagerRegistry $doctrine): Response
     {
-        // FORMULAIRE !!!!!
 
         $entityManager = $doctrine->getManager();
 
@@ -65,20 +68,32 @@ class PhotoController extends AbstractController
             )
             ->add(
                 "visibilite",
-                TextType::class,
+                ChoiceType::class,
                 array(
-                    "label" => "prive or public",
+                    "label" => "visibilite",
+                    "choices" => array(
+                        "public" => 0,
+                        "private" => 1,
+                    ),
                 )
             )
             ->add(
                 "photo",
-                ButtonType::class,
+                FileType::class,
+                array(
+                    "label" => "photo",
+                ),
+                new File([
+                    'maxSize' => '1024k',
+                    'mimeTypes' => [
+                        'image/*',
+                    ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ]),
                 [
                     'attr' => ['class' => 'photo'],
+                    'mapped' => false,
                 ]
-                // array(
-                //     "label" => "lien de la photo",
-                // )
             )
             ->add(
                 "submit",
@@ -96,36 +111,29 @@ class PhotoController extends AbstractController
         {
             $data = $form->getData();
 
-            // var_dump($data);
+            var_dump($data);
 
             $photo->setTitle($data["title"]);
             $photo->setDescription($data["description"]);
             $photo->setPrivacy($data["visibilite"]);
             $photo->setUploadDate(new \DateTimeImmutable());
             $photo->setView(1);
-            $photo->setImagePath($data["photo"]);
+            $uploadedFile = $form->get('photo')->getData();
 
+            // echo $uploadedFile;
+
+            // -- Upload de l'image
+            $fichier = md5(uniqid()).'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move('./assets/img/', $fichier);
+            $photo->setImagePath('./assets/img/'.$fichier);
+            
             $entityManager->persist($photo);
             $entityManager->flush();
 
             return $this->redirectToRoute('add_photo');
         }
-        // $photo->setTitle("Photo de profile");
-        // $photo->setDescription("ok");
-        // $photo->setPrivacy("public");
-        // $photo->setUploadDate(new \DateTimeImmutable());
-        // $photo->setView(1);
-        // $photo->setImagePath("/Users/thomas/Documents/symfony/proj_insta/images");
 
-
-        // $form = $formBuilder->getForm();
-        // $form->handleRequest($request);
-        // $entityManager->persist($photo);
-        // $entityManager->flush();
-
-
-        return $this->render(
-            'gallery/add.html.twig',
+        return $this->render('gallery/add.html.twig',
             array(
                 'form' => $form->createView(),
                 'controller_name' => 'PhotoController'
@@ -139,7 +147,7 @@ class PhotoController extends AbstractController
         
 
 
-        return $this->render('gallery/photo/index.html.twig', [
+        return $this->render('test.html.twig', [
             'controller_name' => 'PhotoController',
         ]);
     }

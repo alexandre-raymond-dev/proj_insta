@@ -16,5 +16,4 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    // public functionh
 }
