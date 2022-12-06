@@ -6,11 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controller\\AlbumController' => $baseDir . '/src/Controller/AlbumController.php',
     'App\\Controller\\MainController' => $baseDir . '/src/Controller/MainController.php',
     'App\\Controller\\ProfileController' => $baseDir . '/src/Controller/ProfileController.php',
     'App\\Controller\\RegistrationController' => $baseDir . '/src/Controller/RegistrationController.php',
     'App\\Controller\\SecurityController' => $baseDir . '/src/Controller/SecurityController.php',
-    'App\\Entity\\User' => $baseDir . '/src/Entity/User.php',
     'App\\Form\\RegistrationFormType' => $baseDir . '/src/Form/RegistrationFormType.php',
     'App\\Kernel' => $baseDir . '/src/Kernel.php',
     'App\\Repository\\UserRepository' => $baseDir . '/src/Repository/UserRepository.php',
@@ -2922,6 +2922,7 @@ return array(
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeStimulusController' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeStimulusController.php',
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeSubscriber' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeSubscriber.php',
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTest' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeTest.php',
+    'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTwigComponent' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeTwigComponent.php',
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeTwigExtension' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeTwigExtension.php',
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeUnitTest' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeUnitTest.php',
     'Symfony\\Bundle\\MakerBundle\\Maker\\MakeUser' => $vendorDir . '/symfony/maker-bundle/src/Maker/MakeUser.php',

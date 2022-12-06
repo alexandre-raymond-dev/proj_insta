@@ -6696,17 +6696,17 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.45.0",
-            "version_normalized": "1.45.0.0",
+            "version": "v1.47.0",
+            "version_normalized": "1.47.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "7ae4ff28ac1b6d6d55591999026040d58b8a3967"
+                "reference": "e607f129d29a6c1e9a9e1ef3d229d653311d58f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/7ae4ff28ac1b6d6d55591999026040d58b8a3967",
-                "reference": "7ae4ff28ac1b6d6d55591999026040d58b8a3967",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/e607f129d29a6c1e9a9e1ef3d229d653311d58f3",
+                "reference": "e607f129d29a6c1e9a9e1ef3d229d653311d58f3",
                 "shasum": ""
             },
             "require": {
@@ -6739,7 +6739,7 @@
                 "symfony/yaml": "^5.4.3|^6.0",
                 "twig/twig": "^2.0|^3.0"
             },
-            "time": "2022-07-26T12:31:45+00:00",
+            "time": "2022-10-04T15:05:10+00:00",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -6772,7 +6772,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.45.0"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.47.0"
             },
             "funding": [
                 {

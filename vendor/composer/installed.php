@@ -891,9 +891,9 @@
             'dev_requirement' => false,
         ),
         'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.45.0',
-            'version' => '1.45.0.0',
-            'reference' => '7ae4ff28ac1b6d6d55591999026040d58b8a3967',
+            'pretty_version' => 'v1.47.0',
+            'version' => '1.47.0.0',
+            'reference' => 'e607f129d29a6c1e9a9e1ef3d229d653311d58f3',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
