@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
         <meta name="theme-color" content="#ffffff">
-        <title>{% block title %}InstaProjet!{% endblock %}</title>
+        <title>{% block title %}InstaKilo!{% endblock %}</title>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
             
         {% block stylesheets %}
@@ -27,7 +28,7 @@
             <div class="container px-md-5">
             <div class="row w-100 g-0 justify-content-between">
                 <div class="col-8">
-                <div class="d-inline-block"><a class="navbar-brand pt-0 fs-3 text-black d-flex align-items-center" href="{{ path('HomeUserPage') }}"><img class="img-fluid" src="assets/img/icons/logo-icon.png" alt="" /><span class="fw-bolder ms-2">Foto</span><span class="fw-thin">gency</span></a></div>
+                <div class="d-inline-block"><a class="navbar-brand pt-0 fs-3 text-black d-flex align-items-center" href="{{ path('HomeUserPage') }}"><img class="img-fluid" src="assets/img/icons/logo-icon.png" alt="" /><span class="fw-bolder ms-2">Insta</span><span class="fw-thin">Kilo</span></a></div>
                 </div>
                 <div class="col-4 d-lg-none text-end pe-0">
                 <button class="btn p-0 shadow-none text-black fs-2 d-inline-block" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-expanded="false" aria-label="Toggle offcanvas navigation"><span class="menu-bar"></span></button>
@@ -46,11 +47,17 @@
                                 alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
                                 style="width: 50px;">
                             </div></a></li>
-                        <li class="nav-item"><a class="nav-link d-inline-block nav-text-outlined lh-1 text-white fs-5" aria-current="page" href="">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link d-inline-block nav-text-outlined lh-1 text-white fs-5" aria-current="page" href="">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link d-inline-block" aria-current="page" href="{{ path('Galleries') }}">Galerie</a></li>
+                        <li class="nav-item"><a class="nav-link d-inline-block " aria-current="page" href="{{ path('search_user') }}">Recherche</a></li>
+                        <li class="nav-item"><a class="nav-link d-inline-block" aria-current="page" href="{{ path('About') }}">A Propos</a></li>
                     </ul>
                     </div>
                 </div>
+
+
+               
+
+
                 </div>
                 <div class="col-4">
                 <div class="d-none d-lg-flex justify-content-end position-relative z-index-1">
@@ -63,8 +70,10 @@
                                 alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
                                 style="width: 50px;">
                             </div></a></li>
-                        <li class="nav-item px-2 position-relative"><a class="nav-link pt-0" aria-current="page" href="">Portfolio</a></li>
-                        <li class="nav-item px-2 position-relative"><a class="nav-link pt-0" aria-current="page" href="">Gallery</a></li>
+                         
+                        <li class="nav-item"><a class="nav-link d-inline-block" aria-current="page" href="{{ path('Galleries') }}">Galerie</a></li>
+                        <li class="nav-item"><a class="nav-link d-inline-block" aria-current="page" href="{{ path('search_user') }}">Recherche</a></li>
+                        <li class="nav-item"><a class="nav-link d-inline-block" aria-current="page" href="{{ path('About') }}">A Propos</a></li>
                     </ul>
                     </div>
                 </div>
