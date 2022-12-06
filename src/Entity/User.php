@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -42,6 +44,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $private = null;
+
+
+    public function __toString() {
+        return $this->email;
+    }
+
+    #[ORM\OneToOne(targetEntity: Profile::class, mappedBy: 'profile')]
+    private $profile;
+
+    public function __construct()
+    {
+        $this->profile = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getProfile(): Collection
+    {
+        return $this->profile;
+    }
 
     public function getId(): ?int
     {
