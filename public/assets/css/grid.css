@@ -1,0 +1,13 @@
+.row {
+    --fg-gutter-x: 2rem;
+    --fg-gutter-y: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--fg-gutter-y));
+    margin-right: calc(-.5 * var(--fg-gutter-x));
+    margin-left: calc(-.5 * var(--fg-gutter-x));
+    margin-bottom: 5%;
+  }
