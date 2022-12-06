@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
 class Photo
@@ -22,16 +23,13 @@ class Photo
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $privacy = null;
+    #[ORM\Column]
+    private ?bool $private = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(name: 'created_on', type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $uploadDate = null;
 
-    #[ORM\Column]
-    private ?int $view = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'image_path', length: 255)]
     private ?string $imagePath = null;
 
     #[ORM\ManyToMany(targetEntity: Album::class, mappedBy: 'photos')]
@@ -71,14 +69,14 @@ class Photo
         return $this;
     }
 
-    public function getPrivacy(): ?string
+    public function getPrivacy(): ?bool
     {
-        return $this->privacy;
+        return $this->private;
     }
 
-    public function setPrivacy(string $privacy): self
+    public function setPrivacy(bool $privacy): self
     {
-        $this->privacy = $privacy;
+        $this->private = $privacy;
 
         return $this;
     }
@@ -91,18 +89,6 @@ class Photo
     public function setUploadDate(\DateTimeInterface $uploadDate): self
     {
         $this->uploadDate = $uploadDate;
-
-        return $this;
-    }
-
-    public function getView(): ?int
-    {
-        return $this->view;
-    }
-
-    public function setView(int $view): self
-    {
-        $this->view = $view;
 
         return $this;
     }
