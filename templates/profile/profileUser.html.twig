@@ -17,11 +17,11 @@
                     <hr>
                     <p>Description</p>
                     </br>
-                    {% for profile in profile %}
+
                         {% if app.user %}
-                            <p>description : {{ profile.getDescription() }}</p>
+                            <p>description : {{ profile[0].getBiography() }}</p>
                         {% endif %}
-                    {% endfor %}
+
                   
                     <hr>
                     <p>Passion</p>

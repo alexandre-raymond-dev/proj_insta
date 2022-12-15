@@ -2,29 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Profile;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditProdileType extends AbstractType
+class EditProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('adresse')
-            ->add('description')
-            ->add('telephone')
-            ->add('genre')
-            ->add('anniversaire')
-            
+            ->add('address')
+            ->add('biography')
+            ->add('phoneNumber')
+            ->add('gender')
+            ->add('birthday')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Profile::class,
+            'data_class' => User::class,
         ]);
     }
 }
