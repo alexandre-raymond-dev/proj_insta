@@ -93,7 +93,7 @@ class UserController extends AbstractController
 
         $user = $userRepository->find($id);
         $friendList = $user->getFriendList();
-        $jsonFriendList = $serial->serialize($friendList, 'json'); //Il faudra peut être ajouter un ['groups' => nomdugrp] si on fait un OneToMany
+        $jsonFriendList = $serial->serialize($friendList, 'json', ['groups' => 'getFriends']); //Il faudra peut être ajouter un ['groups' => nomdugrp] si on fait un OneToMany
         return new JsonReponse($jsonFriendList, Response::HTTP_OK, [], true);
 
     }
