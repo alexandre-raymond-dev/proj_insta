@@ -22,14 +22,11 @@ class Photo
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $privacy = null;
+    #[ORM\Column]
+    private ?bool $private = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $uploadDate = null;
-
-    #[ORM\Column]
-    private ?int $view = null;
+    private ?\DateTimeInterface $created_on = null;
 
     #[ORM\Column(length: 255)]
     private ?string $imagePath = null;
@@ -71,38 +68,26 @@ class Photo
         return $this;
     }
 
-    public function getPrivacy(): ?string
+    public function getPrivate(): ?string
     {
-        return $this->privacy;
+        return $this->private;
     }
 
-    public function setPrivacy(string $privacy): self
+    public function setPrivate(bool $private): self
     {
-        $this->privacy = $privacy;
+        $this->private = $private;
 
         return $this;
     }
 
-    public function getUploadDate(): ?\DateTimeInterface
+    public function getCreatedOn(): ?\DateTimeInterface
     {
-        return $this->uploadDate;
+        return $this->$created_on;
     }
 
-    public function setUploadDate(\DateTimeInterface $uploadDate): self
+    public function setCreatedOn(\DateTimeInterface $created_on): self
     {
-        $this->uploadDate = $uploadDate;
-
-        return $this;
-    }
-
-    public function getView(): ?int
-    {
-        return $this->view;
-    }
-
-    public function setView(int $view): self
-    {
-        $this->view = $view;
+        $this->created_on = $created_on;
 
         return $this;
     }

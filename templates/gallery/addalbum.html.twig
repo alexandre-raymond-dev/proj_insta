@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+{% block body %}
+    <!--<link href="vendors/glightbox/glightbox.min.css" rel="stylesheet">-->
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+            {{ form_start(form,{'method': 'POST'}) }}
+    <section class="100" style="background-color: #ede4c9 ;">
+        <div class="container 100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-9">
+                    <h1 class="text-white mb-4" style="text-align: center;">Créer votre album !</h1>
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+                            <div class="col form-group">
+                                {{ form_row(form.title, {'label': 'Titre', 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="col form-group">
+                                {{ form_label(form.description, 'Description') }}</br>
+                                {{ form_widget(form.description, { 'value': 'content'}) }} {{ form_errors(form.description) }}
+                            </div>
+                            <div class="col form-group">
+                                {{ form_row(form.private, {'label': 'Visibilité', 'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+                                    <button type="submit" class="btn btn-primary btn-block">Créer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ form_end(form) }}
+ </div>
+
+    <!--<script src="vendors/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="vendors/isotope-layout/isotope.pkgd.min.js"> </script>
+    <script src="vendors/isotope-packery/packery-mode.pkgd.min.js"> </script>
+    <script src="vendors/glightbox/glightbox.min.js"></script>-->
+{% endblock %}
+{% endblock %}
