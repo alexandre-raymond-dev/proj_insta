@@ -15,14 +15,17 @@ class Album
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 120)]
+    #[ORM\Column]
+    private ?bool $private = null;
+
+    #[ORM\Column(length: 200)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 500, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $view = null;
+    private ?int $userid = null;
 
     #[ORM\ManyToMany(targetEntity: Photo::class, inversedBy: 'albums')]
     private Collection $photos;
@@ -61,14 +64,26 @@ class Album
         return $this;
     }
 
-    public function getView(): ?int
+    public function getPrivate(): ?bool
     {
-        return $this->view;
+        return $this->private;
     }
 
-    public function setView(int $view): self
+    public function setPrivate(bool $private): self
     {
-        $this->view = $view;
+        $this->private = $private;
+
+        return $this;
+    }
+
+    public function getUserid(): ?int
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(int $userid): self
+    {
+        $this->userid = $userid;
 
         return $this;
     }

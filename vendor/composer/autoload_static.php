@@ -15,8 +15,8 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
@@ -127,6 +127,10 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
         'L' => 
         array (
             'Laminas\\Code\\' => 13,
+        ),
+        'F' => 
+        array (
+            'FOS\\CKEditorBundle\\' => 19,
         ),
         'E' => 
         array (
@@ -499,6 +503,10 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-code/src',
         ),
+        'FOS\\CKEditorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -589,13 +597,23 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
     public static $classMap = array (
         'App\\Controller\\AlbumController' => __DIR__ . '/../..' . '/src/Controller/AlbumController.php',
         'App\\Controller\\MainController' => __DIR__ . '/../..' . '/src/Controller/MainController.php',
+        'App\\Controller\\PhotoController' => __DIR__ . '/../..' . '/src/Controller/PhotoController.php',
         'App\\Controller\\ProfileController' => __DIR__ . '/../..' . '/src/Controller/ProfileController.php',
         'App\\Controller\\RegistrationController' => __DIR__ . '/../..' . '/src/Controller/RegistrationController.php',
+        'App\\Controller\\SearchController' => __DIR__ . '/../..' . '/src/Controller/SearchController.php',
         'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
+        'App\\Controller\\UserController' => __DIR__ . '/../..' . '/src/Controller/UserController.php',
+        'App\\Entity\\Album' => __DIR__ . '/../..' . '/src/Entity/Album.php',
+        'App\\Entity\\Photo' => __DIR__ . '/../..' . '/src/Entity/Photo.php',
+        'App\\Entity\\Profile' => __DIR__ . '/../..' . '/src/Entity/Profile.php',
+        'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
+        'App\\Form\\EditProdileType' => __DIR__ . '/../..' . '/src/Form/EditProdileType.php',
         'App\\Form\\RegistrationFormType' => __DIR__ . '/../..' . '/src/Form/RegistrationFormType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
+        'App\\Repository\\AlbumRepository' => __DIR__ . '/../..' . '/src/Repository/AlbumRepository.php',
+        'App\\Repository\\PhotoRepository' => __DIR__ . '/../..' . '/src/Repository/PhotoRepository.php',
+        'App\\Repository\\ProfileRepository' => __DIR__ . '/../..' . '/src/Repository/ProfileRepository.php',
         'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Repository/UserRepository.php',
-        'App\\Security\\EmailVerifier' => __DIR__ . '/../..' . '/src/Security/EmailVerifier.php',
         'App\\Security\\UsersAuthenticator' => __DIR__ . '/../..' . '/src/Security/UsersAuthenticator.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -1858,6 +1876,21 @@ class ComposerStaticInit835ee99e81fceaa2008fbbaeb66d215f
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'FOS\\CKEditorBundle\\Builder\\JsonBuilder' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Builder/JsonBuilder.php',
+        'FOS\\CKEditorBundle\\Command\\CKEditorInstallerCommand' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Command/CKEditorInstallerCommand.php',
+        'FOS\\CKEditorBundle\\Config\\CKEditorConfiguration' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Config/CKEditorConfiguration.php',
+        'FOS\\CKEditorBundle\\Config\\CKEditorConfigurationInterface' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Config/CKEditorConfigurationInterface.php',
+        'FOS\\CKEditorBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/DependencyInjection/Configuration.php',
+        'FOS\\CKEditorBundle\\DependencyInjection\\FOSCKEditorExtension' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/DependencyInjection/FOSCKEditorExtension.php',
+        'FOS\\CKEditorBundle\\Exception\\BadProxyUrlException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/BadProxyUrlException.php',
+        'FOS\\CKEditorBundle\\Exception\\ConfigException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/ConfigException.php',
+        'FOS\\CKEditorBundle\\Exception\\FOSCKEditorException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/FOSCKEditorException.php',
+        'FOS\\CKEditorBundle\\FOSCKEditorBundle' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/FOSCKEditorBundle.php',
+        'FOS\\CKEditorBundle\\Form\\Type\\CKEditorType' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Form/Type/CKEditorType.php',
+        'FOS\\CKEditorBundle\\Installer\\CKEditorInstaller' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Installer/CKEditorInstaller.php',
+        'FOS\\CKEditorBundle\\Renderer\\CKEditorRenderer' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Renderer/CKEditorRenderer.php',
+        'FOS\\CKEditorBundle\\Renderer\\CKEditorRendererInterface' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Renderer/CKEditorRendererInterface.php',
+        'FOS\\CKEditorBundle\\Twig\\CKEditorExtension' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Twig/CKEditorExtension.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/IntlDateFormatter.php',
         'Laminas\\Code\\DeclareStatement' => __DIR__ . '/..' . '/laminas/laminas-code/src/DeclareStatement.php',
         'Laminas\\Code\\Exception\\BadMethodCallException' => __DIR__ . '/..' . '/laminas/laminas-code/src/Exception/BadMethodCallException.php',
