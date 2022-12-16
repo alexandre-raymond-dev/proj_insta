@@ -35,14 +35,19 @@ class PhotoController extends AbstractController
     public function seeAll(Request $request, ManagerRegistry $doctrine):  Response
     {
         $entityManager = $doctrine->getRepository(Photo::class);
+        $entityManager_album = $doctrine->getRepository(Album::class);
 
         $user = $doctrine->getRepository(User::class)->findBy(['id' => $this->getUser()->getId()]);
-        var_dump($user);
-
+        
+        //$photoList = $entityManager->findAll();
+        //$albumList = $entityManager_album->findAll();
         $photoList = $entityManager->findBy(['id' => $user->getId()]);
+        $albumList = $entityManager_album->findBy(['id' => $user->getId()]);;
 
         return $this->render('gallery/gallery.html.twig', [
-            'photoList' => $photoList
+            'photoList' => $photoList,
+            'albumList' => $albumList,
+
         ]);
     }
 

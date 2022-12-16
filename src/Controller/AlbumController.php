@@ -21,15 +21,16 @@ use Symfony\Component\Validator\Constraints\File;
 
 class AlbumController extends AbstractController
 {
-    #[Route('/album', name: 'app_album')]
+    #[Route('/album/{id}', name: 'app_album')]
     public function index(): Response
     {
+
         return $this->render('album/index.html.twig', [
             'controller_name' => 'AlbumController',
         ]);
     }
 
-    #[Route('/add_album', name: 'album')]
+    #[Route('/add_album', name: 'add_album')]
     public function addAlbum(Request $request, ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
