@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class UserController extends AbstractController
@@ -74,9 +75,28 @@ class UserController extends AbstractController
                 )
             );
     
-    
-    
-    
     }
+
+    #[Route('/user/find', name: 'app_user')]
+    public function getAllUsers(UserRepository $userRepository, SerialisezInterface $serial):JsonResponse{
+        $userList = $userRepository->findAll();
+        $jsonUserList = $serial->serialize($userList, 'json');
+        return new JsonReponse($jsonUserList, Response::HTTP_OK, [], true);
+    }
+
+    #[Route('/user/find', name: 'app_user', methods: ['GET'])]
+    public function getFriendList(UserRepository $userRepository, SerialisezInterface $serial, int $id):JsonResponse{
+        //$user = $userRepository->find($id); pas sur de ça
+        //Récupérer l'utilisateur dans une variable $user
+        //mettre les amis(objet User) de $user dans une $friendList, probablement une boucle ?
+        //Possible de rajouter un OneToMany sur lui même ? si oui il faudrait juste une fonction getFriends dans User qui renvoie une liste de user, et on peut la parcourir
+
+        $user = $userRepository->find($id);
+        $friendList = $user->getFriendList();
+        $jsonFriendList = $serial->serialize($friendList, 'json'); //Il faudra peut être ajouter un ['groups' => nomdugrp] si on fait un OneToMany
+        return new JsonReponse($jsonFriendList, Response::HTTP_OK, [], true);
+
+    }
+
 
 }
