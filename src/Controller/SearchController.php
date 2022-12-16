@@ -33,12 +33,12 @@ class SearchController extends AbstractController
         $entityManager = $doctrine->getManager();
         $searchForm = $this->createForm(SearchFormType::class, $user);
         $searchForm->handleRequest($request);
-        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            $email = $user->setEmail($user->getEmail());
-            $dataEmail = $searchForm->getData();
-        }
-        
+
         $users = $entityManager->getRepository(User::class)->findAll();
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $users = $entityManager->getRepository(User::class)->findBy(['email' => $searchForm->getData()->getEmail()]);
+        }
 
         return $this->render('fotogency-v1/public/blog.html.twig',
                 array('users'=>$users,
