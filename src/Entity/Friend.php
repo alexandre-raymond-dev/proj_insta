@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\FriendRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: FriendRepository::class)]
 class Friend
@@ -11,15 +13,19 @@ class Friend
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $idFriend = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getFriends"])]
     private ?string $usernameFriend = null;
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $idUser = null;
 
     #[ORM\ManyToOne(inversedBy: 'friendList')]

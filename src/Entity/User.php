@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -18,31 +19,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(["getFriends"])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?string $password = null;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(["getFriends"])]
     private $isVerified = false;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getFriends"])]
     private ?string $Username = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getFriends"])]
     private ?string $Name = null;
 
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $private = null;
 
     #[ORM\OneToMany(mappedBy: 'linkToActualUser', targetEntity: Friend::class, orphanRemoval: true)]
