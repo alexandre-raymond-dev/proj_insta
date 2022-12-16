@@ -94,56 +94,33 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route('/dataProfile', name: 'addProfile')]
+    #[Route('/profile/edit', name: 'editProfile')]
     public function register(Request $request,ManagerRegistry $doctrine,ValidatorInterface $validator): Response
     {
-        $user = new User();
+        $form = $this->createFormBuilder()
+            ->add(child:'username', type:TextType::class)
+            ->add(child:'address', type:TextType::class)
+            ->add(child:'biography', type:TextType::class)
+            ->add(child:'phoneNumber', type:TextType::class)
+            ->add(child:'birthday', type:DateType::class)
+            ->getForm();
 
-        $entityManager = $doctrine->getManager();
-
-        $form = $this->createForm(EditProfileType::class, $user);
         $form->handleRequest($request);
 
-        $objUs = $doctrine->getRepository(User::class)->find(1);
-
         $user = $this->getUser();
-        var_dump($this->getUser());
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setAddress($user->getAddress());
-            $user->setBiography($user->getBiography());
-            $user->setBirthday($user->getBirthday());
-            $user->setPhoneNumber($user->getPhoneNumber());
-            $user->setGender($user->getGender());
+            $data = $form->getData();
+//             $user->setAddress($user->getAddress());
+//             $user->setBiography($user->getBiography());
+//             $user->setBirthday($user->getBirthday());
+//             $user->setPhoneNumber($user->getPhoneNumber());
 
-//             if($user->setProfile()){
-//                 $this->addFlash('errorAjoutProfile', 'Information ajoute dans database pour modifier vos données aller dans votre page profile');
-//                 return $this->redirectToRoute('addProfile');
-//             }
-
-
-            var_dump($user->getEmail());
-            $entityManager->persist($user);
-            $entityManager->flush();
             $this->addFlash('success', 'Votre compte a été crée, dirigez vous pour vous connecter.');
             return $this->redirectToRoute('app_login');
         }
-        // on gère les erreurs
-        /*$errors = $validator->validate($user);
-        if (count($errors) > 0) {
-            $errorsString = (string) $errors;
-            var_dump($errorsString);
-            $this->addFlash('errorProfile', 'Une erreur est survenue lors de l ajout de donnee');
-            return $this->redirectToRoute('app_profile');
-        }*/
-
-//         var_dump($form);
 
         return $this->render('registration/registerProfile.html.twig', [
-            array(
-                'registrationForm' => $form->createView(),
-                'controller_name' => 'ProfileController'
-            )
+            'form' => $form->createView()
         ]);
     }
 

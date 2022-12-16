@@ -11,16 +11,24 @@
 				<h4 class="card-title">Formulaire Profile</h4>
 			</header>
 			
-    		{{ form_start(registrationForm,{'method': 'POST'}) }}
+    		{{ form_start(form,{'method': 'POST'}) }}
 					
-                    {% for registrationForm in app.flashes('errorProfile') %}
+                    {% for form in app.flashes('errorProfile') %}
                         <div class="alert alert-info">
-                            {{ registrationForm }}
+                            {{ form }}
                         </div>
                     {% endfor %}
 
+                    <div class="col form-group">
+                        {{ form_row(form.username,
+                            {'label': 'Nom d\'utilisateur',
+                            'attr': {'class': 'form-control'}
+                            })
+                        }}
+                    </div>
+
 					<div class="col form-group">
-						{{ form_row(registrationForm.adresse,
+						{{ form_row(form.address,
 							{'label': 'Adresse',
 							'attr': {'class': 'form-control'}
 							}) 
@@ -28,7 +36,7 @@
 					</div>
 
 					<div class="col form-group">
-						{{ form_row(registrationForm.description,
+						{{ form_row(form.biography,
 							{'label': 'Description',
 							'attr': {'class': 'form-control'}
 							}) 
@@ -37,24 +45,16 @@
 					
 
 					<div class="form-group">
-						{{ form_row(registrationForm.anniversaire,
-							{'label': 'Anniversaire',
+						{{ form_row(form.birthday,
+							{'label': 'Date de naissance',
 							'attr': {'class': 'form-control'}
 							}) 
 						}}
 					</div> 
 
 					<div class="form-group">
-						{{ form_row(registrationForm.telephone,
+						{{ form_row(form.phoneNumber,
 							{'label': 'Telephone',
-							'attr': {'class': 'form-control'},
-							}) 
-						}}
-					</div>
-
-					<div class="form-group">
-						{{ form_row(registrationForm.genre,
-							{'label': 'Genre',
 							'attr': {'class': 'form-control'},
 							}) 
 						}}
@@ -64,7 +64,7 @@
 						<button type="submit" class="btn btn-primary btn-block"> Enregistrer </button>
 					</div>
 
-			{{ form_end(registrationForm) }} 
+			{{ form_end(form) }}
 		</article><!-- card-body.// -->
 	</div>
 
