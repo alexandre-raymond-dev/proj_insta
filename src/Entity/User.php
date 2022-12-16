@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -42,6 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $private = null;
+
+    #[ORM\OneToMany(mappedBy: 'linkToActualUser', targetEntity: Friend::class, orphanRemoval: true)]
+    private Collection $friendList;
+
+    public function __construct()
+    {
+        $this->friendList = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +168,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrive(int $prive): self
     {
         $this->private = $prive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Friend>
+     */
+    public function getFriendList(): Collection
+    {
+        return $this->friendList;
+    }
+
+    public function addFriendList(Friend $friendList): self
+    {
+        if (!$this->friendList->contains($friendList)) {
+            $this->friendList->add($friendList);
+            $friendList->setLinkToActualUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriendList(Friend $friendList): self
+    {
+        if ($this->friendList->removeElement($friendList)) {
+            // set the owning side to null (unless already changed)
+            if ($friendList->getLinkToActualUser() === $this) {
+                $friendList->setLinkToActualUser(null);
+            }
+        }
 
         return $this;
     }
