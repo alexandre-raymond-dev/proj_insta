@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
 use App\Entity\Task;
+use App\Form\SearchFormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,10 +29,16 @@ class SearchController extends AbstractController
     #[Route('/user', name: 'search_user')]
     public function searchUser(Request $request,ManagerRegistry $doctrine): Response
     {
+        $user = new User();
         $entityManager = $doctrine->getManager();
+        $searchForm = $this->createForm(SearchFormType::class, $user);
+        $searchForm->handleRequest($request);
 
         $users = $entityManager->getRepository(User::class)->findAll();
-        // var_dump($users);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $users = $entityManager->getRepository(User::class)->findBy(['email' => $searchForm->getData()->getEmail()]);
+        }
 
         return $this->render('fotogency-v1/public/blog.html.twig',
                 array('users'=>$users,
@@ -40,44 +47,6 @@ class SearchController extends AbstractController
             );
        
         
-        /*if(isset($_POST["submit"])){
-            $str = $_POST["email"];
-            $sth = $con_>prepare("SELECT * FROM 'user' WHERE email = '$str'");
-
-            $sth->setFetchMode(PDO:: FETCH_OBJ);
-            $sth->execute();
-
-            if($row = $sth->fetch()){
-                 ?>
-                 <br><br><br>
-                 <table>
-                    <tr>
-                        <th>email</th>
-                        <th>username</th>
-                    </tr>
-                    <tr>
-                        <td><?php echo $row->email; ?></td>
-                        <td><?php echo $row->username;?></td>
-                    </tr>
-
-                 </table>
-                 <?php 
-            } 
-            
-
-        }
-
-       
-       
-    
-            return $this->render(
-                'public/blog.html.twig',
-                
-            );*/
-    
-    
-    
-    
     }
 
 }

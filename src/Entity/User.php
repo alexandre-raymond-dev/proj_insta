@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -16,32 +19,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(["getFriends"])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?string $password = null;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(["getFriends"])]
     private $isVerified = false;
 
     #[ORM\Column(length: 255)]
-    private ?string $Username = null;
+    #[Groups(["getFriends"])]
+    private ?string $username = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    #[Groups(["getFriends"])]
+    private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $biography = null;
+
+    #[ORM\Column(name: "phone_number", length: 255, nullable: true)]
+    private ?string $phoneNumber = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $gender = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $birthday = null;
 
     #[ORM\Column]
+    #[Groups(["getFriends"])]
     private ?int $private = null;
+
+
+    public function __toString() {
+        return $this->email;
+    }
+
+    #[ORM\OneToMany(mappedBy: 'linkToActualUser', targetEntity: Friend::class, orphanRemoval: true)]
+    private Collection $friendList;
+
+    public function __construct()
+    {
+        $this->friendList = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -127,37 +165,127 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): self
+    public function setUsername(string $username): self
     {
-        $this->Username = $Username;
+        $this->username = $username;
 
         return $this;
     }
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
 
-    public function getPrive(): ?int
+    public function getPrivate(): ?int
     {
         return $this->private;
     }
 
-    public function setPrive(int $prive): self
+    public function setPrivate(int $private): self
     {
-        $this->private = $prive;
+        $this->private = $private;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): self
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?string
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?string $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Friend>
+     */
+    public function getFriendList(): Collection
+    {
+        return $this->friendList;
+    }
+
+    public function addFriendList(Friend $friendList): self
+    {
+        if (!$this->friendList->contains($friendList)) {
+            $this->friendList->add($friendList);
+            $friendList->setLinkToActualUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriendList(Friend $friendList): self
+    {
+        if ($this->friendList->removeElement($friendList)) {
+            // set the owning side to null (unless already changed)
+            if ($friendList->getLinkToActualUser() === $this) {
+                $friendList->setLinkToActualUser(null);
+            }
+        }
 
         return $this;
     }

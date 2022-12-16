@@ -18,22 +18,19 @@ class RegistrationController extends AbstractController
 {
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine,ValidatorInterface $validator): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine, ValidatorInterface $validator): Response
     {
         $user = new User();
-        
         $entityManager = $doctrine->getManager();
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        
-        // on enregistre les données dans la database
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $user->setEmail($user->getEmail());
             $user->setUsername($user->getUsername());
             $user->setName($user->getName());
-            $user->setPrive(1);
+            $user->setPrivate(True);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,

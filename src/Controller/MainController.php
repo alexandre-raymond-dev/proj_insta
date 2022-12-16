@@ -21,16 +21,6 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/galleries", name="Galleries")
-     */
-    public function viewGallerie(): Response
-    {
-        return $this->render('fotogency-v1/public/gallery.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-    }
-
-    /**
      * @Route("/service", name="Service")
      */
     public function viewService(): Response
@@ -50,7 +40,7 @@ class MainController extends AbstractController
     }
     
      /**
-     * @Route("/portFolio", name="portFolio")
+     * @Route("/Portfolio", name="Portfolio")
      */
     public function viewPortfolio(): Response
     {
