@@ -109,13 +109,13 @@ class UserController extends AbstractController
 
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-//             $user->setAddress($user->getAddress());
-//             $user->setBiography($user->getBiography());
-//             $user->setBirthday($user->getBirthday());
-//             $user->setPhoneNumber($user->getPhoneNumber());
+            $user->setUsername($form->get('username')->getData());
+            $user->setAddress($form->get('address')->getData());
+            $user->setBiography($form->get('biography')->getData());
+            $user->setBirthday($form->get('birthday')->getData());
+            $user->setPhoneNumber($form->get('phoneNumber')->getData());
 
-            $this->addFlash('success', 'Votre compte a été crée, dirigez vous pour vous connecter.');
+            $this->addFlash('success', 'Vos modifications ont bien été prises en compte !');
             return $this->redirectToRoute('app_login');
         }
 
